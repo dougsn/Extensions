@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Ramal.App.Data;
+using Ramal.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,12 +18,18 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 
+builder.Services.AddDbContext<MeuDbContext>(option =>
+{
+    option.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+});
+
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 
-
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 

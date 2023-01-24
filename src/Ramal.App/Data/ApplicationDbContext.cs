@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Ramal.App.ViewModels;
+using Ramal.Business.Models;
 
 namespace Ramal.App.Data
 {
@@ -9,5 +11,7 @@ namespace Ramal.App.Data
             : base(options)
         {
         }
+
+        
     }
 }
