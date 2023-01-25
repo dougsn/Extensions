@@ -1,7 +1,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Ramal.App.Configuration;
 using Ramal.App.Data;
+using Ramal.Business.Interfaces;
 using Ramal.Data;
+using Ramal.Data.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,10 +26,9 @@ builder.Services.AddDbContext<MeuDbContext>(option =>
     option.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
 
-builder.Services.AddScoped<MeuDbContext>();
+builder.Services.ResolveDependencies();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
 
 builder.Services.AddControllersWithViews();
 
