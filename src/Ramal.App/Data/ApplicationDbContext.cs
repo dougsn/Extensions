@@ -11,7 +11,7 @@ namespace Ramal.App.Data
             : base(options)
         {
         }
-
-        
+        public DbSet<Ramal.App.ViewModels.FuncionarioViewModel> FuncionarioViewModel { get; set; }
+                
     }
 }

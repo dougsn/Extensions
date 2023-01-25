@@ -15,14 +15,30 @@
       "applicationUrl": "https://localhost:7107;http://localhost:5002",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "Ramal.App - Staging": {
+        "commandName": "Project",
+        "dotnetRunMessages": true,
+        "launchBrowser": true,
+        "applicationUrl": "https://localhost:7107;http://localhost:5002",
+        "environmentVariables": {
+          "ASPNETCORE_ENVIRONMENT": "Staging"
+        },
+        "Ramal.App - Production": {
+          "commandName": "Project",
+          "dotnetRunMessages": true,
+          "launchBrowser": true,
+          "applicationUrl": "https://localhost:7107;http://localhost:5002",
+          "environmentVariables": {
+            "ASPNETCORE_ENVIRONMENT": "Production"
+          }
+        },
+        "IIS Express": {
+          "commandName": "IISExpress",
+          "launchBrowser": true,
+          "environmentVariables": {
+            "ASPNETCORE_ENVIRONMENT": "Development"
+          }
+        }
       }
-    },
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    }
-  }
 }

@@ -13,7 +13,8 @@ namespace Ramal.Data
     {
         public MeuDbContext(DbContextOptions<MeuDbContext> options) : base(options)
         {
-           
+            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+            ChangeTracker.AutoDetectChangesEnabled = false;
         }
 
         public DbSet<Funcionario> Funcionarios { get; set; }
@@ -22,8 +23,6 @@ namespace Ramal.Data
         {
            
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(MeuDbContext).Assembly);
-
-            base.OnModelCreating(modelBuilder);
         }
     }
 }

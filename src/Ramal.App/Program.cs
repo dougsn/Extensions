@@ -23,6 +23,7 @@ builder.Services.AddDbContext<MeuDbContext>(option =>
     option.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
 
+builder.Services.AddScoped<MeuDbContext>();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
