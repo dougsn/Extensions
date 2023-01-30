@@ -9,6 +9,7 @@ namespace Ramal.App.AutoMapper
         public AutoMapperConfig()
         {
             CreateMap<Funcionario, FuncionarioViewModel>().ReverseMap();
+            CreateMap<Setor, SetorViewModel>().ReverseMap();
         }
     }
 }

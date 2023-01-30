@@ -10,6 +10,7 @@ namespace Ramal.App.Configuration
         {
             services.AddScoped<MeuDbContext>();
             services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
+            services.AddScoped<ISetorRepository, SetorRepository>();
 
             return services;
         }

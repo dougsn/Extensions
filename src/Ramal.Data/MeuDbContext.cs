@@ -19,10 +19,13 @@ namespace Ramal.Data
 
         public DbSet<Funcionario> Funcionarios { get; set; }
 
+        public DbSet<Setor> Setores{ get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
            
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(MeuDbContext).Assembly);
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

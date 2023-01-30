@@ -6,23 +6,24 @@ using Ramal.Business.Models;
 
 namespace Ramal.App.Controllers
 {
-    public class FuncionariosController : Controller
+    public class FuncionarioController : Controller
     {
         private readonly IFuncionarioRepository _funcionarioRepository;
+        private readonly ISetorRepository _setorRepository;
         private readonly IMapper _mapper;
 
-        public FuncionariosController(IFuncionarioRepository funcionarioRepository, IMapper mapper)
+        public FuncionarioController(IFuncionarioRepository funcionarioRepository, IMapper mapper, ISetorRepository setorRepository)
         {
             _funcionarioRepository = funcionarioRepository;
             _mapper = mapper;
+            _setorRepository = setorRepository;
         }
-
 
 
         // GET: Funcionarios
         public async Task<IActionResult> Index()
         {
-              return View(_mapper.Map<IEnumerable<FuncionarioViewModel>>(await _funcionarioRepository.ObterTodos()));
+            return View(_mapper.Map<IEnumerable<FuncionarioViewModel>>(await _funcionarioRepository.ObterTodos()));
         }
 
         // GET: Funcionarios/Details/5
@@ -40,9 +41,11 @@ namespace Ramal.App.Controllers
         }
 
         // GET: Funcionarios/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var funcionarioViewModel = await PopularFornecedores(new FuncionarioViewModel());
+
+            return View(funcionarioViewModel);
         }
 
         // POST: Funcionarios/Create
@@ -52,10 +55,11 @@ namespace Ramal.App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(FuncionarioViewModel funcionarioViewModel)
         {
+            funcionarioViewModel = await PopularFornecedores(funcionarioViewModel);
             if (!ModelState.IsValid) return View(funcionarioViewModel);
 
-            var fornecedor = _mapper.Map<Funcionario>(funcionarioViewModel);
-            await _funcionarioRepository.Adicionar(fornecedor);
+           
+            await _funcionarioRepository.Adicionar(_mapper.Map<Funcionario>(funcionarioViewModel));
             return RedirectToAction(nameof(Index));
         }
 
@@ -63,7 +67,7 @@ namespace Ramal.App.Controllers
         public async Task<IActionResult> Edit(Guid id)
         {
             var funcionarioViewModel = await _funcionarioRepository.ObterPorId(id);
-            
+
             if (funcionarioViewModel == null)
             {
                 return NotFound();
@@ -87,8 +91,8 @@ namespace Ramal.App.Controllers
             await _funcionarioRepository.Atualizar(fornecedor);
 
             return RedirectToAction(nameof(Index));
-            
-            
+
+
         }
 
         // GET: Funcionarios/Delete/5
@@ -97,7 +101,7 @@ namespace Ramal.App.Controllers
 
 
             var funcionarioViewModel = await _funcionarioRepository.ObterPorId(id);
-;           if (funcionarioViewModel == null) return NotFound();
+            ; if (funcionarioViewModel == null) return NotFound();
 
 
             return View(funcionarioViewModel);
@@ -108,7 +112,7 @@ namespace Ramal.App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var funcionarioViewModel =  await _funcionarioRepository.ObterPorId(id);
+            var funcionarioViewModel = await _funcionarioRepository.ObterPorId(id);
 
             if (funcionarioViewModel == null) return NotFound();
 
@@ -116,6 +120,13 @@ namespace Ramal.App.Controllers
             await _funcionarioRepository.Remover(id);
             return RedirectToAction(nameof(Index));
         }
-                
+
+        private async Task<FuncionarioViewModel> PopularFornecedores(FuncionarioViewModel funcionario)
+        {
+            funcionario.Setores = _mapper.Map<IEnumerable<SetorViewModel>>(await _setorRepository.ObterTodos());
+            return funcionario;
+        }
+
+
     }
 }

@@ -18,4 +18,8 @@
     <ProjectReference Include="..\Ramal.Business\Ramal.Business.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>
