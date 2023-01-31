@@ -23,7 +23,7 @@ namespace Ramal.App.Controllers
         // GET: Funcionarios
         public async Task<IActionResult> Index()
         {
-            return View(_mapper.Map<IEnumerable<FuncionarioViewModel>>(await _funcionarioRepository.ObterTodos()));
+            return View(_mapper.Map<IEnumerable<FuncionarioViewModel>>(await _funcionarioRepository.ObterFuncionariosSetores()));
         }
 
         // GET: Funcionarios/Details/5
@@ -31,7 +31,7 @@ namespace Ramal.App.Controllers
         {
 
 
-            var funcionarioViewModel = await _funcionarioRepository.ObterPorId(id);
+            var funcionarioViewModel = await ObterFuncionario(id);
             if (funcionarioViewModel == null)
             {
                 return NotFound();
@@ -43,7 +43,7 @@ namespace Ramal.App.Controllers
         // GET: Funcionarios/Create
         public async Task<IActionResult> Create()
         {
-            var funcionarioViewModel = await PopularFornecedores(new FuncionarioViewModel());
+            var funcionarioViewModel = await PopularSetores(new FuncionarioViewModel());
 
             return View(funcionarioViewModel);
         }
@@ -55,7 +55,7 @@ namespace Ramal.App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(FuncionarioViewModel funcionarioViewModel)
         {
-            funcionarioViewModel = await PopularFornecedores(funcionarioViewModel);
+            funcionarioViewModel = await PopularSetores(funcionarioViewModel);
             if (!ModelState.IsValid) return View(funcionarioViewModel);
 
            
@@ -66,7 +66,8 @@ namespace Ramal.App.Controllers
         // GET: Funcionarios/Edit/5
         public async Task<IActionResult> Edit(Guid id)
         {
-            var funcionarioViewModel = await _funcionarioRepository.ObterPorId(id);
+            var funcionarioViewModel = await ObterFuncionario(id);
+                funcionarioViewModel.Setores = _mapper.Map<IEnumerable<SetorViewModel>>(await _setorRepository.ObterTodos());
 
             if (funcionarioViewModel == null)
             {
@@ -84,12 +85,11 @@ namespace Ramal.App.Controllers
         {
             if (id != funcionarioViewModel.Id) return NotFound();
 
-
             if (!ModelState.IsValid) return View(funcionarioViewModel);
+                       
+            await _funcionarioRepository.Atualizar(_mapper.Map<Funcionario>(funcionarioViewModel));
 
-            var fornecedor = _mapper.Map<Funcionario>(funcionarioViewModel);
-            await _funcionarioRepository.Atualizar(fornecedor);
-
+           
             return RedirectToAction(nameof(Index));
 
 
@@ -100,8 +100,9 @@ namespace Ramal.App.Controllers
         {
 
 
-            var funcionarioViewModel = await _funcionarioRepository.ObterPorId(id);
-            ; if (funcionarioViewModel == null) return NotFound();
+            var funcionarioViewModel = await ObterFuncionario(id);
+            
+            if (funcionarioViewModel == null) return NotFound();
 
 
             return View(funcionarioViewModel);
@@ -112,7 +113,7 @@ namespace Ramal.App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var funcionarioViewModel = await _funcionarioRepository.ObterPorId(id);
+            var funcionarioViewModel = await ObterFuncionario(id);
 
             if (funcionarioViewModel == null) return NotFound();
 
@@ -121,9 +122,18 @@ namespace Ramal.App.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private async Task<FuncionarioViewModel> PopularFornecedores(FuncionarioViewModel funcionario)
+        private async Task<FuncionarioViewModel> PopularSetores(FuncionarioViewModel funcionario)
         {
             funcionario.Setores = _mapper.Map<IEnumerable<SetorViewModel>>(await _setorRepository.ObterTodos());
+            return funcionario;
+        }
+
+        
+
+        private async Task<FuncionarioViewModel> ObterFuncionario(Guid id)
+        {
+            var funcionario = _mapper.Map<FuncionarioViewModel>(await _funcionarioRepository.ObterFuncionarioSetor(id));
+
             return funcionario;
         }
 
