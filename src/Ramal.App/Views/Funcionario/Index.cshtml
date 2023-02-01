@@ -4,13 +4,13 @@
     ViewData["Title"] = "Ramais";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1 class="mt-5 mb-4">@ViewData["Title"]</h1>
 
-<p>
+<p class="mb-3">
     <a class="btn btn-secondary" asp-action="Create">Novo Ramal</a>
 </p>
-<table class="table">
-    <thead>
+<table class="table table-hover">
+    <thead class="thead-dark">
         <tr class="text-center">
             <th>
                 @Html.DisplayNameFor(model => model.Nome)
@@ -42,7 +42,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
-            <td class="text-end">
+            <td class="text-right">
                 <a class="btn btn-warning text-white" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
                 <a class="btn btn-info text-white" asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
                 <a class="btn btn-danger"  asp-action="Delete" asp-route-id="@item.Id">Deletar</a>

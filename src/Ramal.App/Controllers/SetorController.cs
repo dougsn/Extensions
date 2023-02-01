@@ -36,7 +36,7 @@ namespace Ramal.App.Controllers
         // GET: Setor/Details/5
         public async Task<IActionResult> Details(Guid id)
         {
-            var setorViewModel = await _setorRepository.ObterPorId(id);
+            var setorViewModel = await ObterSetorFuncionario(id);
             if (setorViewModel == null)
             {
                 return NotFound();
@@ -69,7 +69,7 @@ namespace Ramal.App.Controllers
         // GET: Setor/Edit/5
         public async Task<IActionResult> Edit(Guid id)
         {
-            var setorViewModel = await _setorRepository.ObterPorId(id);
+            var setorViewModel = await ObterSetorFuncionario(id);
 
             if (setorViewModel == null)
             {
@@ -99,7 +99,7 @@ namespace Ramal.App.Controllers
         // GET: Setor/Delete/5
         public async Task<IActionResult> Delete(Guid id)
         {
-            var setorViewModel = await _setorRepository.ObterPorId(id);
+            var setorViewModel = await ObterSetorFuncionario(id);
             ; if (setorViewModel == null) return NotFound();
 
 
@@ -111,13 +111,18 @@ namespace Ramal.App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var setorViewModel = await _setorRepository.ObterPorId(id);
+            var setorViewModel = await ObterSetorFuncionario(id);
 
             if (setorViewModel == null) return NotFound();
 
 
             await _setorRepository.Remover(id);
             return RedirectToAction(nameof(Index));
+        }
+
+        private async Task<SetorViewModel> ObterSetorFuncionario(Guid id)
+        {
+            return _mapper.Map<SetorViewModel>(await _setorRepository.ObterSetorFuncionario(id));
         }
 
        

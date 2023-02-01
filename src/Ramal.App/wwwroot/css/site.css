@@ -17,6 +17,6 @@ body {
     margin-bottom: 60px;
 }
 
-.table {
+.table td{
     vertical-align: middle !important;
 }

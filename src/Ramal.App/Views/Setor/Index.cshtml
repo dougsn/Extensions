@@ -1,17 +1,16 @@
 ﻿@model IEnumerable<Ramal.App.ViewModels.SetorViewModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Setores";
 }
+<h1 class="mt-5 mb-4">@ViewData["Title"]</h1>
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
+<p class="mb-3">
+    <a class="btn btn-secondary" asp-action="Create">Novo Setor</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr class="text-center">
             <th>
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
@@ -20,14 +19,14 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+            <tr class="text-center">
             <td>
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            <td class="text-right">
+                <a class="btn btn-warning text-white" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                <a class="btn btn-info text-white" asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
             </td>
         </tr>
 }

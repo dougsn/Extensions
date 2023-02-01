@@ -9,5 +9,6 @@ namespace Ramal.Business.Interfaces
 {
     public interface ISetorRepository : IRepository<Setor>
     {
+        Task<Setor> ObterSetorFuncionario(Guid id);
     }
 }
