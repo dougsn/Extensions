@@ -1,4 +1,5 @@
 ﻿using Ramal.Business.Interfaces;
+using Ramal.Business.Services;
 using Ramal.Data;
 using Ramal.Data.Repository;
 
@@ -11,6 +12,9 @@ namespace Ramal.App.Configuration
             services.AddScoped<MeuDbContext>();
             services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
             services.AddScoped<ISetorRepository, SetorRepository>();
+
+            services.AddScoped<IFuncionarioService, FuncionarioService>();
+            services.AddScoped<ISetorService, SetorService>();
 
             return services;
         }

@@ -9,14 +9,16 @@ namespace Ramal.App.Controllers
     public class FuncionarioController : Controller
     {
         private readonly IFuncionarioRepository _funcionarioRepository;
+        private readonly IFuncionarioService _funcionarioService;
         private readonly ISetorRepository _setorRepository;
         private readonly IMapper _mapper;
 
-        public FuncionarioController(IFuncionarioRepository funcionarioRepository, IMapper mapper, ISetorRepository setorRepository)
+        public FuncionarioController(IFuncionarioRepository funcionarioRepository, IMapper mapper, ISetorRepository setorRepository, IFuncionarioService funcionarioService)
         {
             _funcionarioRepository = funcionarioRepository;
             _mapper = mapper;
             _setorRepository = setorRepository;
+            _funcionarioService = funcionarioService;
         }
 
 
@@ -59,7 +61,7 @@ namespace Ramal.App.Controllers
             if (!ModelState.IsValid) return View(funcionarioViewModel);
 
            
-            await _funcionarioRepository.Adicionar(_mapper.Map<Funcionario>(funcionarioViewModel));
+            await _funcionarioService.Adicionar(_mapper.Map<Funcionario>(funcionarioViewModel));
             return RedirectToAction(nameof(Index));
         }
 
