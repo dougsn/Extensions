@@ -21,6 +21,8 @@ namespace Ramal.Data
 
         public DbSet<Setor> Setores{ get; set; }
 
+        public DbSet<Email> Emails { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
            
