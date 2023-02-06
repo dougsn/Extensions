@@ -12,9 +12,11 @@ namespace Ramal.App.Configuration
             services.AddScoped<MeuDbContext>();
             services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
             services.AddScoped<ISetorRepository, SetorRepository>();
+            services.AddScoped<IEmailRepository, EmailRepository>();
 
             services.AddScoped<IFuncionarioService, FuncionarioService>();
             services.AddScoped<ISetorService, SetorService>();
+            services.AddScoped<IEmailService, EmailService>();
 
             return services;
         }
