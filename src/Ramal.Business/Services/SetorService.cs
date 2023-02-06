@@ -1,33 +1,37 @@
 ﻿using Ramal.Business.Interfaces;
 using Ramal.Business.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Ramal.Business.Models.Validations;
 
 namespace Ramal.Business.Services
 {
-    public class SetorService : ISetorService
+    public class SetorService : BaseService, ISetorService
     {
-        public Task Adicionar(Setor setor)
+        private readonly ISetorRepository _setorRepository;
+
+        public SetorService(ISetorRepository setorRepository)
         {
-            throw new NotImplementedException();
+            _setorRepository = setorRepository;
         }
 
-        public Task Atualizar(Setor setor)
+        public async Task Adicionar(Setor setor)
         {
-            throw new NotImplementedException();
+            if (!ExecutarValidacao(new SetorValidation(), setor)) return;
+
+            await _setorRepository.Adicionar(setor);
+        }                    
+        
+        public async Task Atualizar(Setor setor)
+        {
+            if (!ExecutarValidacao(new SetorValidation(), setor)) return;
+
+            await _setorRepository.Atualizar(setor);
+        }       
+
+        public async Task Remover(Guid id)
+        {
+            await _setorRepository.Remover(id);
         }
 
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task Remover(Guid id)
-        {
-            throw new NotImplementedException();
-        }
+        public void Dispose() => _setorRepository?.Dispose();
     }
 }

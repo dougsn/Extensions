@@ -1,14 +1,21 @@
-﻿@model IEnumerable<Ramal.App.ViewModels.SetorViewModel>
+﻿@using Ramal.App
+@model IEnumerable<Ramal.App.ViewModels.SetorViewModel>
 
 @{
     ViewData["Title"] = "Setores";
 }
 <h1 class="mt-5 mb-4">@ViewData["Title"]</h1>
 
-<p class="mb-3">
+<p supress-by-claim-name="Setor" supress-by-claim-value="Adicionar">
     <a class="btn btn-secondary" asp-action="Create">Novo Setor</a>
 </p>
-<table class="table table-hover">
+<table class="table table-hover tabela">
+    <tr>        
+        <th colspan="6">
+            Setor:
+            <input class="form-control" type="text" placeholder="Filtrar setor" />
+        </th>
+    </tr>
     <thead class="thead-dark">
         <tr class="text-center">
             <th>
@@ -24,9 +31,9 @@
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
             <td class="text-right">
-                <a class="btn btn-warning text-white" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                <a class="btn btn-warning text-white" supress-by-claim-name="Setor" supress-by-claim-value="Editar" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
                 <a class="btn btn-info text-white" asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
-                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+                <a class="btn btn-danger"  supress-by-claim-name="Setor" supress-by-claim-value="Excluir" asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
             </td>
         </tr>
 }

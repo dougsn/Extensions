@@ -1,15 +1,10 @@
 ﻿using Ramal.Business.Interfaces;
 using Ramal.Business.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+using Ramal.Business.Models.Validations;
 
 namespace Ramal.Business.Services
 {
-    public class FuncionarioService : IFuncionarioService
+    public class FuncionarioService : BaseService, IFuncionarioService
     {
         private readonly IFuncionarioRepository _funcionarioRepository;
 
@@ -20,27 +15,25 @@ namespace Ramal.Business.Services
 
         public async Task Adicionar(Funcionario funcionario)
         {
-            if(_funcionarioRepository.Buscar(f => f.Nome == funcionario.Nome).Result.Any())
-            {
-                throw new Exception("Já existe um funcionário com esse nome.");
-            } // Não funcionou a mensagem de erro e salvou no banco com o mesmo Nome
+            if (!ExecutarValidacao(new FuncionarioValidation(), funcionario)) return;
+
+            await _funcionarioRepository.Adicionar(funcionario);
+
+        }
+
+        public async Task Atualizar(Funcionario funcionario)
+        {
+            if (!ExecutarValidacao(new FuncionarioValidation(), funcionario)) return;
 
             await _funcionarioRepository.Atualizar(funcionario);
         }
 
-        public Task Atualizar(Funcionario funcionario)
-        {
-            throw new NotImplementedException();
+       
+        public async Task Remover(Guid id)
+        {          
+            await _funcionarioRepository.Remover(id);
         }
 
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task Remover(Guid id)
-        {
-            throw new NotImplementedException();
-        }
+        public void Dispose() => _funcionarioRepository?.Dispose();
     }
 }

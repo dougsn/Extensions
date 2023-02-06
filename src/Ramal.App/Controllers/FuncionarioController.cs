@@ -1,11 +1,14 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Ramal.App.ViewModels;
 using Ramal.Business.Interfaces;
 using Ramal.Business.Models;
+using Ramal.App.Extensions;
 
 namespace Ramal.App.Controllers
 {
+    [Authorize]
     public class FuncionarioController : Controller
     {
         private readonly IFuncionarioRepository _funcionarioRepository;
@@ -23,12 +26,15 @@ namespace Ramal.App.Controllers
 
 
         // GET: Funcionarios
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             return View(_mapper.Map<IEnumerable<FuncionarioViewModel>>(await _funcionarioRepository.ObterFuncionariosSetores()));
         }
 
         // GET: Funcionarios/Details/5
+        [AllowAnonymous]
+        [Route("Ramal/{id:guid}")]
         public async Task<IActionResult> Details(Guid id)
         {
 
@@ -43,6 +49,8 @@ namespace Ramal.App.Controllers
         }
 
         // GET: Funcionarios/Create
+        [ClaimsAuthorize("Funcionario","Adicionar")]
+        [Route("NovoRamal")]
         public async Task<IActionResult> Create()
         {
             var funcionarioViewModel = await PopularSetores(new FuncionarioViewModel());
@@ -53,6 +61,8 @@ namespace Ramal.App.Controllers
         // POST: Funcionarios/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [ClaimsAuthorize("Funcionario", "Adicionar")]
+        [Route("NovoRamal")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(FuncionarioViewModel funcionarioViewModel)
@@ -66,6 +76,8 @@ namespace Ramal.App.Controllers
         }
 
         // GET: Funcionarios/Edit/5
+        [ClaimsAuthorize("Funcionario", "Editar")]
+        [Route("EditarRamal/{id:guid}")]
         public async Task<IActionResult> Edit(Guid id)
         {
             var funcionarioViewModel = await ObterFuncionario(id);
@@ -81,6 +93,8 @@ namespace Ramal.App.Controllers
         // POST: Funcionarios/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [ClaimsAuthorize("Funcionario", "Editar")]
+        [Route("EditarRamal/{id:guid}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, FuncionarioViewModel funcionarioViewModel)
@@ -89,7 +103,7 @@ namespace Ramal.App.Controllers
 
             if (!ModelState.IsValid) return View(funcionarioViewModel);
                        
-            await _funcionarioRepository.Atualizar(_mapper.Map<Funcionario>(funcionarioViewModel));
+            await _funcionarioService.Atualizar(_mapper.Map<Funcionario>(funcionarioViewModel));
 
            
             return RedirectToAction(nameof(Index));
@@ -98,6 +112,8 @@ namespace Ramal.App.Controllers
         }
 
         // GET: Funcionarios/Delete/5
+        [ClaimsAuthorize("Funcionario", "Excluir")]
+        [Route("ExcluirRamal/{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
 
@@ -111,6 +127,8 @@ namespace Ramal.App.Controllers
         }
 
         // POST: Funcionarios/Delete/5
+        [ClaimsAuthorize("Funcionario", "Excluir")]
+        [Route("ExcluirRamal/{id:guid}")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -120,7 +138,7 @@ namespace Ramal.App.Controllers
             if (funcionarioViewModel == null) return NotFound();
 
 
-            await _funcionarioRepository.Remover(id);
+            await _funcionarioService.Remover(id);
             return RedirectToAction(nameof(Index));
         }
 

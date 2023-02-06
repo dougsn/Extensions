@@ -20,3 +20,12 @@ body {
 .table td{
     vertical-align: middle !important;
 }
+
+.content_login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80vh;
+    justify-content: center;
+}
+

@@ -3,42 +3,44 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:7756",
-      "sslPort": 44316
+      "applicationUrl": "http://localhost:4686",
+      "sslPort": 44305
     }
   },
   "profiles": {
-    "Ramal.App - Dev": {
+    "DevIO.App - Dev": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:7107;http://localhost:5002",
+      "applicationUrl": "https://localhost:7017;http://localhost:5017",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "Ramal.App - Staging": {
-        "commandName": "Project",
-        "dotnetRunMessages": true,
-        "launchBrowser": true,
-        "applicationUrl": "https://localhost:7107;http://localhost:5002",
-        "environmentVariables": {
-          "ASPNETCORE_ENVIRONMENT": "Staging"
-        },
-        "Ramal.App - Production": {
-          "commandName": "Project",
-          "dotnetRunMessages": true,
-          "launchBrowser": true,
-          "applicationUrl": "https://localhost:7107;http://localhost:5002",
-          "environmentVariables": {
-            "ASPNETCORE_ENVIRONMENT": "Production"
-          }
-        },
-        "IIS Express": {
-          "commandName": "IISExpress",
-          "launchBrowser": true,
-          "environmentVariables": {
-            "ASPNETCORE_ENVIRONMENT": "Development"
-          }
-        }
       }
+    },
+    "DevIO.App - Stage": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:7017;http://localhost:5017",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Staging"
+      }
+    },
+    "DevIO.App - Prod": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:7017;http://localhost:5017",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Production"
+      }
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
 }
