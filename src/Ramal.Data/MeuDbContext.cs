@@ -23,6 +23,8 @@ namespace Ramal.Data
 
         public DbSet<Email> Emails { get; set; }
 
+        public DbSet<Computador> Computadores  { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
            

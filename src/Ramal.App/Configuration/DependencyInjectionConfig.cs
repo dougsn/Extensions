@@ -13,10 +13,12 @@ namespace Ramal.App.Configuration
             services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
             services.AddScoped<ISetorRepository, SetorRepository>();
             services.AddScoped<IEmailRepository, EmailRepository>();
+            services.AddScoped<IComputadorRepository, ComputadorRepository>();
 
             services.AddScoped<IFuncionarioService, FuncionarioService>();
             services.AddScoped<ISetorService, SetorService>();
             services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IComputadorService, ComputadorService>();
 
             return services;
         }

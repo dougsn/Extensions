@@ -14,6 +14,11 @@ namespace Ramal.Business.Models
 
         public IEnumerable<Funcionario> Funcionarios { get; set; }
 
+        public IEnumerable<Email> Emails{ get; set; }
+
+        public IEnumerable<Computador> Computadores{ get; set; }
+
+
 
     }
 }

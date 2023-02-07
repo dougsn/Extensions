@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Ramal.App.ViewModels.ComputadorViewModel>
+
+@{
+    ViewData["Title"] = "Computadores";
+}
+
+<h1 class="mt-5 mb-4">@ViewData["Title"]</h1>
+
+<p>
+    <a class="btn btn-secondary" asp-action="Create">Novo Computador</a>
+</p>
+<table class="table table-hover tabela">
+    <tr>
+        <th colspan="4">
+            Setor:
+            <input class="form-control" type="text" placeholder="Filtrar setor" />
+        </th>
+        <th colspan="4">
+            Hostname:
+            <input class="form-control" type="text" placeholder="Filtrar hostname" />
+        </th>
+    </tr>
+    <thead class="thead-dark">
+        <tr class="text-center">
+            <th>
+                @Html.DisplayNameFor(model => model.Setor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hostname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cpu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Memoria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Disco)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SistemaOperacional)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="text-center">
+            <td>
+                 @Html.DisplayFor(modelItem => item.Setor.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hostname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cpu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Memoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Disco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SistemaOperacional)
+            </td>
+             <td class="text-right">
+                <a class="btn btn-warning text-white"  asp-action="Edit" asp-route-id="@item.Id">Editar</a> 
+                <a class="btn btn-info text-white" asp-action="Details" asp-route-id="@item.Id">Detalhes</a> 
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

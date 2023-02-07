@@ -14,6 +14,7 @@ namespace Ramal.App.Data
         public DbSet<Ramal.App.ViewModels.FuncionarioViewModel> FuncionarioViewModel { get; set; }
         public DbSet<Ramal.App.ViewModels.SetorViewModel> SetorViewModel { get; set; }
         public DbSet<Ramal.App.ViewModels.EmailViewModel> EmailViewModel { get; set; }
+        public DbSet<Ramal.App.ViewModels.ComputadorViewModel> ComputadorViewModel { get; set; }
                 
     }
 }

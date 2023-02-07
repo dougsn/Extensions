@@ -59,7 +59,6 @@ namespace Ramal.App.Controllers
         }
 
         // GET: Email/Create
-        [ClaimsAuthorize("Admin", "Admin")]
         [Route("NovoEmail")]
         public async Task<IActionResult> Create()
         {
@@ -84,7 +83,6 @@ namespace Ramal.App.Controllers
         }
 
         // GET: Email/Edit/5
-        [ClaimsAuthorize("Admin", "Admin")]
         [Route("EditarEmail/{id:guid}")]
         public async Task<IActionResult> Edit(Guid id)
         {
@@ -116,7 +114,6 @@ namespace Ramal.App.Controllers
         }
 
         // GET: Email/Delete/5
-        [ClaimsAuthorize("Admin", "Admin")]
         [Route("ExcluirEmail/{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
