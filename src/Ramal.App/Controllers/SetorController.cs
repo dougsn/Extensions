@@ -47,7 +47,7 @@ namespace Ramal.App.Controllers
         }
 
         // GET: Setor/Create
-        [ClaimsAuthorize("Setor","Adicionar")]
+        [ClaimsAuthorize("Admin", "Admin")]
         [Route("NovoSetor")]
         public IActionResult Create()
         {
@@ -57,7 +57,7 @@ namespace Ramal.App.Controllers
         // POST: Setor/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [ClaimsAuthorize("Setor", "Adicionar")]
+        [ClaimsAuthorize("Admin", "Admin")]
         [Route("NovoSetor")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -71,7 +71,7 @@ namespace Ramal.App.Controllers
         }
 
         // GET: Setor/Edit/5
-        [ClaimsAuthorize("Setor", "Editar")]
+        [ClaimsAuthorize("Admin", "Admin")]
         [Route("EditarSetor/{id:guid}")]
         public async Task<IActionResult> Edit(Guid id)
         {
@@ -87,7 +87,7 @@ namespace Ramal.App.Controllers
         // POST: Setor/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [ClaimsAuthorize("Setor", "Editar")]
+        [ClaimsAuthorize("Admin", "Admin")]
         [Route("EditarSetor/{id:guid}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -105,7 +105,7 @@ namespace Ramal.App.Controllers
         }
 
         // GET: Setor/Delete/5
-        [ClaimsAuthorize("Setor", "Excluir")]
+        [ClaimsAuthorize("Admin", "Admin")]
         [Route("ExcluirSetor/{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
@@ -117,7 +117,7 @@ namespace Ramal.App.Controllers
         }
 
         // POST: Setor/Delete/5
-        [ClaimsAuthorize("Setor", "Excluir")]
+        [ClaimsAuthorize("Admin", "Admin")]
         [Route("ExcluirSetor/{id:guid}")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

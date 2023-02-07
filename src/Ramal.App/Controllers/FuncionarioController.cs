@@ -49,7 +49,7 @@ namespace Ramal.App.Controllers
         }
 
         // GET: Funcionarios/Create
-        [ClaimsAuthorize("Funcionario","Adicionar")]
+        [ClaimsAuthorize("Admin", "Admin")]
         [Route("NovoRamal")]
         public async Task<IActionResult> Create()
         {
@@ -61,7 +61,7 @@ namespace Ramal.App.Controllers
         // POST: Funcionarios/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [ClaimsAuthorize("Funcionario", "Adicionar")]
+        [ClaimsAuthorize("Admin", "Admin")]
         [Route("NovoRamal")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -76,7 +76,7 @@ namespace Ramal.App.Controllers
         }
 
         // GET: Funcionarios/Edit/5
-        [ClaimsAuthorize("Funcionario", "Editar")]
+        [ClaimsAuthorize("Admin", "Admin")]
         [Route("EditarRamal/{id:guid}")]
         public async Task<IActionResult> Edit(Guid id)
         {
@@ -93,7 +93,7 @@ namespace Ramal.App.Controllers
         // POST: Funcionarios/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [ClaimsAuthorize("Funcionario", "Editar")]
+        [ClaimsAuthorize("Admin", "Admin")]
         [Route("EditarRamal/{id:guid}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -112,7 +112,7 @@ namespace Ramal.App.Controllers
         }
 
         // GET: Funcionarios/Delete/5
-        [ClaimsAuthorize("Funcionario", "Excluir")]
+        [ClaimsAuthorize("Admin", "Admin")]
         [Route("ExcluirRamal/{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
@@ -127,7 +127,7 @@ namespace Ramal.App.Controllers
         }
 
         // POST: Funcionarios/Delete/5
-        [ClaimsAuthorize("Funcionario", "Excluir")]
+        [ClaimsAuthorize("Admin", "Admin")]
         [Route("ExcluirRamal/{id:guid}")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

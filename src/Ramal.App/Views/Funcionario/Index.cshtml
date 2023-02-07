@@ -7,7 +7,7 @@
 
 <h1 class="mt-5 mb-4">@ViewData["Title"]</h1>
 
-<p supress-by-claim-name="Funcionario" supress-by-claim-value="Adicionar" class="mb-3">
+<p supress-by-claim-name="Admin" supress-by-claim-value="Admin" class="mb-3">
     <a class="btn btn-secondary" asp-action="Create">Novo Ramal</a>
 </p>
 
@@ -55,9 +55,9 @@
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td class="text-right">
-                <a class="btn btn-warning text-white" supress-by-claim-name="Funcionario" supress-by-claim-value="Editar" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                    <a class="btn btn-warning text-white"supress-by-claim-name="Admin" supress-by-claim-value="Admin" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
                 <a class="btn btn-info text-white" asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
-                <a class="btn btn-danger" supress-by-claim-name="Funcionario" supress-by-claim-value="Excluir" asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+                    <a class="btn btn-danger" supress-by-claim-name="Admin" supress-by-claim-value="Admin" asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
             </td>
         </tr>
 }

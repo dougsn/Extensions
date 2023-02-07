@@ -6,7 +6,7 @@
 }
 <h1 class="mt-5 mb-4">@ViewData["Title"]</h1>
 
-<p supress-by-claim-name="Setor" supress-by-claim-value="Adicionar">
+<psupress-by-claim-name="Admin" supress-by-claim-value="Admin">
     <a class="btn btn-secondary" asp-action="Create">Novo Setor</a>
 </p>
 <table class="table table-hover tabela">
@@ -31,9 +31,9 @@
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
             <td class="text-right">
-                <a class="btn btn-warning text-white" supress-by-claim-name="Setor" supress-by-claim-value="Editar" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                    <a class="btn btn-warning text-white" supress-by-claim-name="Admin" supress-by-claim-value="Admin" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
                 <a class="btn btn-info text-white" asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
-                <a class="btn btn-danger"  supress-by-claim-name="Setor" supress-by-claim-value="Excluir" asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+                    <a class="btn btn-danger" supress-by-claim-name="Admin" supress-by-claim-value="Admin" asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
             </td>
         </tr>
 }
