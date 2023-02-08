@@ -12,6 +12,7 @@ namespace Ramal.App.AutoMapper
             CreateMap<Setor, SetorViewModel>().ReverseMap();
             CreateMap<Email, EmailViewModel>().ReverseMap();
             CreateMap<Computador, ComputadorViewModel>().ReverseMap();
+            CreateMap<Impressora, ImpressoraViewModel>().ReverseMap();
         }
     }
 }

@@ -25,6 +25,8 @@ namespace Ramal.Data
 
         public DbSet<Computador> Computadores  { get; set; }
 
+        public DbSet<Impressora> Impressoras { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
            

@@ -18,6 +18,10 @@ namespace Ramal.Business.Models
 
         public IEnumerable<Computador> Computadores{ get; set; }
 
+        public IEnumerable<Impressora> Impressoras { get; set; }
+
+
+
 
 
     }

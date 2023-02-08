@@ -148,9 +148,9 @@ namespace Ramal.App.Controllers
 
         private async Task<ComputadorViewModel> ObterComputador(Guid id)
         {
-            var email = _mapper.Map<ComputadorViewModel>(await _computadorRepository.ObterComputadorSetor(id));
+            var computador = _mapper.Map<ComputadorViewModel>(await _computadorRepository.ObterComputadorSetor(id));
 
-            return email;
+            return computador;
         }
     }
 }

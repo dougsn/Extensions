@@ -30,6 +30,9 @@ namespace Ramal.Data.Mappings
             builder.HasMany(s => s.Computadores)
               .WithOne(f => f.Setor)
               .HasForeignKey(f => f.SetorId);
+            builder.HasMany(s => s.Impressoras)
+             .WithOne(f => f.Setor)
+             .HasForeignKey(f => f.SetorId);
 
             builder.ToTable("Setores");
         }

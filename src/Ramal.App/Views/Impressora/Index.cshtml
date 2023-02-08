@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Ramal.App.ViewModels.ImpressoraViewModel>
+
+@{
+    ViewData["Title"] = "Impressoras";
+}
+
+<h1 class="mt-5 mb-4">@ViewData["Title"]</h1>
+
+<p>
+    <a class="btn btn-secondary" asp-action="Create">Nova Impressora</a>
+</p>
+<table class="table table-hover tabela">
+    <tr>
+        <th colspan="4">
+            Setor:
+            <input class="form-control" type="text" placeholder="Filtrar setor" />
+        </th>
+        <th colspan="4">
+            Marca:
+            <input class="form-control" type="text" placeholder="Filtrar marca" />
+        </th>
+    </tr>
+    <thead class="thead-dark">
+        <tr class="text-center">
+            <th>
+                @Html.DisplayNameFor(model => model.Setor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Modelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ip)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="text-center">
+            <td>
+                @Html.DisplayFor(modelItem => item.Setor.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modelo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ip)
+            </td>
+            <td class="text-right">
+                <a class="btn btn-warning text-white" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                <a class="btn btn-info text-white" asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
