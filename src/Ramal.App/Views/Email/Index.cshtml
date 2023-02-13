@@ -9,44 +9,71 @@
 <p class="mb-3">
     <a class="btn btn-secondary"  asp-action="Create">Novo Email</a>
 </p>
+
+<div class="tabela filter">
+    <div>
+        <strong>Setor:</strong>
+        <select class="custom-select filtro">
+            <option value="" selected>Filtrar setor</option>
+            <option>Informática</option>
+            <option>Administração</option>
+            <option>Recepção</option>
+            <option>Produção</option>
+            <option>Qualidade</option>
+            <option>Jurídico</option>
+            <option>Recursos Humanos</option>
+            <option>Contratação</option>
+            <option>Comercial</option>
+            <option>Diretoria</option>
+            <option>Secretaria</option>
+            <option>Telefonia</option>
+            <option>Orçamento</option>
+            <option>Contabilidade</option>
+            <option>Financeiro</option>
+            <option>Elétrica</option>
+            <option>Compras</option>
+            <option>Vigia</option>
+            <option>Segurança</option>
+            <option>Delima</option>
+            <option>Departamento Médico</option>
+            <option>Restaurante</option>
+            <option>Portaria</option>
+            <option>Portaria Maruí</option>
+        </select>
+    </div>
+    <div>
+        <strong>Email:</strong>
+        <input class="form-control" type="text" placeholder="Filtrar e-mail" />
+    </div>
+</div>
 <table class="table table-hover tabela">
-    <tr>
-        <th colspan="2">
-            Email:
-            <input class="form-control" type="text" placeholder="Filtrar nome" />
-        </th>
-        <th colspan="3">          
-            Setor:
-            <input class="form-control" type="text" placeholder="Filtrar setor" />
-        </th>
-    </tr>
-    <thead class="thead-dark">
+    <thead class="thead-dark line headerr">
         <tr class="text-center">
+            <th>
+                @Html.DisplayNameFor(model => model.Setor)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Conta)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Senha)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Setor)
-            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
-            <tr class="text-center">
-            <td>
-                @Html.DisplayFor(modelItem => item.Conta)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Senha)
-            </td>
-            <td>
+            <tr class="text-center row">
+            <td class="cell">
                 @Html.DisplayFor(modelItem => item.Setor.Nome)
             </td>
-                <td class="text-right">
+            <td class="cell">
+                @Html.DisplayFor(modelItem => item.Conta)
+            </td>
+            <td class="cell">
+                @Html.DisplayFor(modelItem => item.Senha)
+            </td>
+                <td class="cell">
                 <a class="btn btn-warning text-white"  asp-action="Edit" asp-route-id="@item.Id">Editar</a> 
                 <a class="btn btn-info text-white" asp-action="Details" asp-route-id="@item.Id">Detalhes</a> 
                 <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Deletar</a>

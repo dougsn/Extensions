@@ -18,7 +18,7 @@ using Ramal.Data.Repository;
 namespace Ramal.App.Controllers
 {
     [Authorize]
-    [ClaimsAuthorize("Admin", "Admin")]
+    [ClaimsAuthorize("Admin_IT", "Admin_IT")]
     public class EmailController : Controller
     {
 
@@ -70,7 +70,6 @@ namespace Ramal.App.Controllers
         // POST: Email/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [ClaimsAuthorize("Admin", "Admin")]
         [Route("NovoEmail")]
         public async Task<IActionResult> Create(EmailViewModel emailViewModel)
         {
@@ -97,7 +96,6 @@ namespace Ramal.App.Controllers
         }
 
         // POST: Email/Edit/5
-        [ClaimsAuthorize("Admin", "Admin")]
         [Route("EditarEmail/{id:guid}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -128,7 +126,6 @@ namespace Ramal.App.Controllers
         // POST: Email/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [ClaimsAuthorize("Admin", "Admin")]
         [Route("ExcluirEmail/{id:guid}")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {

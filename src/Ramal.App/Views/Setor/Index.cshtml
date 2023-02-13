@@ -6,17 +6,45 @@
 }
 <h1 class="mt-5 mb-4">@ViewData["Title"]</h1>
 
-<psupress-by-claim-name="Admin" supress-by-claim-value="Admin">
+<p supress-by-claim-name="Admin" supress-by-claim-value="Admin">
     <a class="btn btn-secondary" asp-action="Create">Novo Setor</a>
 </p>
+
+<div class="tabela filter">
+    <div>
+        <strong>Setor:</strong>
+        <select class="custom-select filtro">
+            <option value="" selected>Filtrar setor</option>
+            <option>Informática</option>
+            <option>Administração</option>
+            <option>Recepção</option>
+            <option>Produção</option>
+            <option>Qualidade</option>
+            <option>Jurídico</option>
+            <option>Recursos Humanos</option>
+            <option>Contratação</option>
+            <option>Comercial</option>
+            <option>Diretoria</option>
+            <option>Secretaria</option>
+            <option>Telefonia</option>
+            <option>Orçamento</option>
+            <option>Contabilidade</option>
+            <option>Financeiro</option>
+            <option>Elétrica</option>
+            <option>Compras</option>
+            <option>Vigia</option>
+            <option>Segurança</option>
+            <option>Delima</option>
+            <option>Departamento Médico</option>
+            <option>Restaurante</option>
+            <option>Portaria</option>
+            <option>Portaria Maruí</option>
+        </select>
+    </div>
+</div>
+
 <table class="table table-hover tabela">
-    <tr>        
-        <th colspan="6">
-            Setor:
-            <input class="form-control" type="text" placeholder="Filtrar setor" />
-        </th>
-    </tr>
-    <thead class="thead-dark">
+    <thead class="thead-dark line headerr">
         <tr class="text-center">
             <th>
                 @Html.DisplayNameFor(model => model.Nome)
@@ -26,14 +54,14 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-            <tr class="text-center">
-            <td>
+            <tr class="row">
+            <td class="cell">
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
-            <td class="text-right">
-                    <a class="btn btn-warning text-white" supress-by-claim-name="Admin" supress-by-claim-value="Admin" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+            <td class="cell">
+                <a class="btn btn-warning text-white" supress-by-claim-name="Admin" supress-by-claim-value="Admin" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
                 <a class="btn btn-info text-white" asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
-                    <a class="btn btn-danger" supress-by-claim-name="Admin" supress-by-claim-value="Admin" asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+                <a class="btn btn-danger" supress-by-claim-name="Admin" supress-by-claim-value="Admin" asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
             </td>
         </tr>
 }
